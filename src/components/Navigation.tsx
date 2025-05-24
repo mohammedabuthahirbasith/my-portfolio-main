@@ -109,9 +109,9 @@ const Navigation = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden fixed inset-0 top-[3.5rem] bg-gray-900/95 backdrop-blur-md"
+              className="md:hidden fixed inset-0 top-[3.5rem]"
             >
-              <div className="flex flex-col gap-4 p-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
+              <div className="flex flex-col gap-4 p-6 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 {menuItems.map((item, index) => (
                   <motion.button
                     key={item.name}
@@ -119,7 +119,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left py-3 px-4 text-white hover:text-purple-400 transition-colors duration-300 text-lg rounded-lg hover:bg-gray-800/50"
+                    className="block w-full text-left py-4 px-5 text-white hover:text-purple-400 transition-all duration-300 text-lg rounded-xl hover:bg-purple-500/10 hover:shadow-lg hover:shadow-purple-500/5 bg-gray-900/90 backdrop-blur-sm"
                   >
                     {item.name}
                   </motion.button>
