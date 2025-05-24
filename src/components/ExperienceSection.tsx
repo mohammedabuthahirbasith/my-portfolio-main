@@ -56,7 +56,7 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -76,7 +76,7 @@ const ExperienceSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto"
+          className="max-w-[90rem] mx-auto"
         >
           {experiences.map((exp, index) => (
             <motion.div
@@ -84,34 +84,34 @@ const ExperienceSection = () => {
               variants={itemVariants}
               className="mb-12 last:mb-0"
             >
-              <div className="glass-effect rounded-2xl p-8 relative">
+              <div className="glass-effect rounded-2xl p-6 md:p-8 lg:p-10">
                 {/* Role and Company */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">{exp.role}</h3>
-                    <p className="text-purple-400 text-lg">{exp.company}</p>
+                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">{exp.role}</h3>
+                    <p className="text-purple-400 text-lg md:text-xl lg:text-2xl mt-1">{exp.company}</p>
                   </div>
                   <div className="flex items-center mt-2 md:mt-0">
-                    <Calendar size={18} className="text-gray-400 mr-2" />
-                    <span className="text-gray-300">{exp.duration}</span>
+                    <Calendar size={20} className="text-gray-400 mr-2" />
+                    <span className="text-gray-300 text-base md:text-lg">{exp.duration}</span>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-300 text-base md:text-lg mb-6 md:mb-8">
                   {exp.description}
                 </p>
 
                 {/* Responsibilities */}
                 <div>
-                  <h4 className="text-white font-semibold mb-3 flex items-center">
-                    <Briefcase size={18} className="mr-2" />
+                  <h4 className="text-white font-semibold text-lg md:text-xl mb-4 flex items-center">
+                    <Briefcase size={20} className="mr-2" />
                     Key Responsibilities
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3 md:space-y-4">
                     {exp.responsibilities.map((item, idx) => (
-                      <li key={idx} className="flex items-start text-gray-300">
-                        <ChevronRight size={18} className="text-purple-400 mr-2 mt-1 flex-shrink-0" />
+                      <li key={idx} className="flex items-start text-gray-300 text-base md:text-lg">
+                        <ChevronRight size={20} className="text-purple-400 mr-3 mt-1 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -119,10 +119,9 @@ const ExperienceSection = () => {
                 </div>
               </div>
               
-              {/* Timeline connector for all but the last item */}
               {index < experiences.length - 1 && (
-                <div className="flex justify-center my-4">
-                  <div className="h-10 w-0.5 bg-purple-500/30"></div>
+                <div className="flex justify-center my-6 md:my-8">
+                  <div className="h-12 w-0.5 bg-purple-500/30"></div>
                 </div>
               )}
             </motion.div>

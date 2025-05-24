@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import AnimatedCube from "./AnimatedCube";
 
@@ -30,11 +30,6 @@ const HeroSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const socialLinks = [
-    { name: "GitHub", Icon: Github, url: "https://github.com/mohammedabuthahir29" },
-    { name: "LinkedIn", Icon: Linkedin, url: "https://linkedin.com/in/mohammedabuthahirbasith786" },
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -64,7 +59,7 @@ const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-[100svh] flex items-center justify-center relative overflow-hidden py-16 sm:py-20"
     >
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900"></div>
@@ -73,41 +68,41 @@ const HeroSection = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between relative z-10"
+        className="container mx-auto px-4 sm:px-6 flex flex-col lg:flex-row items-center justify-between relative z-10 gap-8"
       >
         {/* Left Content */}
         <div className="lg:w-3/5 text-center lg:text-left">
           <motion.h1
             variants={itemVariants}
-            className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 whitespace-nowrap"
+            className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4"
           >
             Hi, I'm{" "}
-            <span className="gradient-text">Mohammed Abuthahir Basith A</span>
+            <span className="gradient-text">Mohammed Abuthahir Basith</span>
           </motion.h1>
           
           <motion.div
             variants={itemVariants}
-            className="text-lg lg:text-xl text-gray-300 mb-6 h-8 typing-text"
+            className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 h-8 typing-text"
           >
             {text}<span className="animate-pulse">|</span>
           </motion.div>
           
           <motion.p
             variants={itemVariants}
-            className="text-lg text-gray-400 mb-8 max-w-2xl"
+            className="text-base sm:text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
           >
             Software Developer with experience in Vue.js and Node.js. Passionate about creating dynamic, high-performance web applications and contributing to team success.
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-10"
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={scrollToProjects}
-              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center justify-center gap-2 pulse-glow"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-medium flex items-center justify-center gap-2 pulse-glow"
             >
               Explore My Work
             </motion.button>
@@ -117,44 +112,20 @@ const HeroSection = () => {
               download="Mohammed Abuthahir Basith A - Resume.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 glass-effect rounded-full text-white font-medium hover:bg-white/10 flex items-center justify-center gap-2 transition-all duration-300"
+              className="px-6 py-3 sm:px-8 sm:py-4 glass-effect rounded-full text-white font-medium hover:bg-white/10 flex items-center justify-center gap-2 transition-all duration-300"
             >
               <Download size={18} />
               Download Resume
             </motion.a>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex justify-center lg:justify-start gap-6"
-          >
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                custom={index}
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                className="text-gray-400 hover:text-purple-500 transition-all duration-300"
-              >
-                <social.Icon size={24} />
-              </motion.a>
-            ))}
           </motion.div>
         </div>
 
         {/* Right Content - 3D Cube */}
         <motion.div
           variants={itemVariants}
-          className="lg:w-1/2 flex justify-center mt-12 lg:mt-0 pointer-events-none"
+          className="lg:w-2/5 flex justify-center items-center mt-8 lg:mt-0"
         >
-          <div className="float-animation">
-            <AnimatedCube />
-          </div>
+          <AnimatedCube />
         </motion.div>
       </motion.div>
 

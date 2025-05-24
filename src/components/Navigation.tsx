@@ -31,9 +31,21 @@ const Navigation = () => {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      // Close mobile menu first
+      setIsOpen(false);
+      
+      // Wait for mobile menu to close before scrolling
+      setTimeout(() => {
+        const navHeight = scrolled ? 64 : 80; // Adjusted height based on scroll state
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = window.pageYOffset + elementPosition - navHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }, 100);
     }
-    setIsOpen(false);
   };
 
   return (
@@ -41,19 +53,23 @@ const Navigation = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8 }}
-      className={`fixed top-0 left-0 right-0 z-50 px-6 py-3 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-2 transition-all duration-300 ${
         scrolled ? "bg-gray-900/80 backdrop-blur-md shadow-lg" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-1">
         <div className={`flex items-center justify-between ${scrolled ? "py-2" : "py-3"}`}>
           <motion.a
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#hero");
+            }}
             href="#hero"
             whileHover={{ scale: 1.1 }}
-            className="text-2xl font-bold gradient-text flex items-center"
+            className="text-lg sm:text-xl md:text-2xl font-bold gradient-text flex items-center truncate cursor-pointer"
           >
             <span className="text-purple-500">&lt;</span>
-            Md Abuthahir Basith
+            <span className="truncate">Md Abuthahir Basith</span>
             <span className="text-purple-500">/&gt;</span>
           </motion.a>
 
@@ -78,7 +94,7 @@ const Navigation = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2"
+            className="md:hidden p-2 z-50 text-white hover:text-purple-400 transition-colors duration-300"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -92,9 +108,10 @@ const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden glass-effect rounded-2xl mt-4 overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="md:hidden fixed inset-0 top-[3.5rem] bg-gray-900/95 backdrop-blur-md"
             >
-              <div className="p-6 flex flex-col gap-6">
+              <div className="flex flex-col gap-4 p-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
                 {menuItems.map((item, index) => (
                   <motion.button
                     key={item.name}
@@ -102,7 +119,7 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left py-3 text-white hover:text-purple-400 transition-colors duration-300"
+                    className="block w-full text-left py-3 px-4 text-white hover:text-purple-400 transition-colors duration-300 text-lg rounded-lg hover:bg-gray-800/50"
                   >
                     {item.name}
                   </motion.button>
