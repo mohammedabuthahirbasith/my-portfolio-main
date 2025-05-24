@@ -94,32 +94,32 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-12 md:py-24 relative overflow-hidden">
-      <div className="container px-4 md:px-6 mx-auto max-w-[90rem]">
+    <section id="contact" className="py-12 md:py-20 relative overflow-hidden">
+      <div className="container px-4 md:px-6 mx-auto max-w-6xl">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 md:mb-16"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-3 md:mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 md:mb-4">
             Get In <span className="gradient-text">Touch</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto px-4">
             Have a project in mind or just want to chat? Feel free to reach out!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 max-w-[90rem] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 h-fit w-full"
+            className="glass-effect rounded-2xl p-4 sm:p-6 h-fit w-full"
           >
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-8">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
               Send Me a Message
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
@@ -229,24 +229,22 @@ const ContactSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 w-full"
+              className="glass-effect rounded-2xl p-6 lg:p-8 w-full"
             >
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
                 Follow Me
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 lg:gap-6">
+              <div className="flex flex-col sm:flex-row gap-4">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 md:p-4 lg:p-5 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors group"
+                    className="bg-[#0B1121] rounded-xl px-5 py-4 hover:bg-gray-800/80 transition-all duration-300 flex items-center gap-3 min-w-[140px]"
                   >
-                    <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-gray-700/60 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-                      <social.icon size={16} className="text-gray-300 group-hover:text-purple-400 transition-colors md:w-5 md:h-5 lg:w-6 lg:h-6" />
-                    </div>
-                    <span className="text-white font-medium text-sm md:text-base lg:text-lg group-hover:text-purple-400 transition-colors">
+                    <social.icon className="text-white w-6 h-6 shrink-0" />
+                    <span className="text-white text-lg whitespace-nowrap pr-2">
                       {social.name}
                     </span>
                   </a>

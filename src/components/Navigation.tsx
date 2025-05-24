@@ -69,7 +69,7 @@ const Navigation = () => {
             className="text-lg sm:text-xl md:text-2xl font-bold gradient-text flex items-center truncate cursor-pointer"
           >
             <span className="text-purple-500">&lt;</span>
-            <span className="truncate">Md Abuthahir Basith</span>
+            <span className="truncate"></span>
             <span className="text-purple-500">/&gt;</span>
           </motion.a>
 

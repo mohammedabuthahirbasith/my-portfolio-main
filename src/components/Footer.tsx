@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
@@ -23,25 +22,10 @@ const Footer = () => {
             <ArrowUp size={20} className="text-white" />
           </motion.button>
         </div>
-        
-        <div className="text-center">
-          <motion.a
-            href="#"
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold gradient-text inline-block"
-          >
-            <span className="text-purple-500">&lt;</span>
-            Md Abuthahir Basith
-            <span className="text-purple-500">/&gt;</span>
-          </motion.a>
-        </div>
-        
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Basith A | All Rights Reserved
-          </p>
+              
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col items-center">
           <p className="text-gray-500 text-sm">
-            Designed & Built with ❤️
+            &copy; {currentYear} Mohammed Abuthahir Basith A | All Rights Reserved
           </p>
         </div>
       </div>
