@@ -23,7 +23,8 @@ const SkillsSection = () => {
       icon: <Layout className="text-blue-400" />,
       skills: [
         { name: "React", level: 80 },
-        { name: "Vue JS", level: 85 },
+        { name: "React", level: 90 },
+{ name: "Vue JS", level: 80 },
         { name: "Node JS", level: 80 },
         { name: "JavaScript", level: 85 },
       ],
@@ -149,7 +150,7 @@ const SkillsSection = () => {
           <h3 className="text-2xl font-bold mb-8">Other Technologies I Work With</h3>
           
           <div className="flex flex-wrap justify-center gap-4">
-            {["Vue.js", "React", "Node.js", "JavaScript", "Python", "Java", "C", "HTML", "CSS", "MySQL", "PostgreSQL", "VS Code", "Eclipse"].map((tech) => (
+            {["React", "Node.js", "Vue.js", "JavaScript", "Python", "Java", "C", "HTML", "CSS", "MySQL", "PostgreSQL", "VS Code", "Eclipse"].map((tech) => (
               <motion.div
                 key={tech}
                 whileHover={{ scale: 1.1, y: -5 }}

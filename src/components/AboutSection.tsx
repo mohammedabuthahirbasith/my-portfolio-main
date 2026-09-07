@@ -30,14 +30,14 @@ const AboutSection = () => {
     {
       title: "Who I Am",
       description:
-        "Software Developer from Erode, Tamil Nadu, with experience in Vue.js and Node.js. Currently working at Vaken Technologies as a Trainee Engineer.",
+        "Software Developer from Erode, Tamil Nadu, with experience in React, Node.js, and modern web technologies. Currently working as a Software Developer at Vaken Technologies.",
       icon: UserCircle,
       color: "from-blue-500 to-cyan-400"
     },
     {
       title: "What I Do",
       description:
-        "Develop and improve Sovablu platform using Vue.js, focusing on responsive design and high-performance web applications. Work with Jenkins for CI/CD and AWS services.",
+        "Develop and improve web applications using React, focusing on responsive design, scalability, and high performance. Experienced with CI/CD pipelines and cloud services.",
       icon: Code,
       color: "from-purple-500 to-pink-500"
     },
@@ -107,13 +107,13 @@ const AboutSection = () => {
             <div>
               <h3 className="text-2xl lg:text-3xl font-bold gradient-text mb-6">My Journey</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I am a Software Developer with a B.E. in Electronics and Communication Engineering from Nandha Engineering College. Currently working at Vaken Technologies as a Trainee Engineer.
+                I am a Software Developer with a B.E. in Electronics and Communication Engineering from Nandha Engineering College. Currently working as a Software Developer at Vaken Technologies.
               </p>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I specialize in Vue.js development, working on the Sovablu platform where I focus on creating responsive and high-performance web applications. I have experience with modern development tools and practices including Jenkins for CI/CD and AWS services.
+                I specialize in React development, building scalable and high-performance web applications. I have experience with modern development tools, CI/CD pipelines, and cloud platforms.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                I am passionate about creating intuitive user interfaces and robust web applications. My portfolio includes projects built with modern technologies like React, Vue.js, and Node.js, demonstrating my commitment to staying current with industry trends.
+                I am passionate about creating intuitive user interfaces and robust web applications. My portfolio includes projects built with modern technologies like React, Node.js, and Vue.js, demonstrating my commitment to staying current with industry trends.
               </p>
             </div>
             
