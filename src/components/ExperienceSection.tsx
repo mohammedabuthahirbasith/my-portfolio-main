@@ -7,45 +7,49 @@ const ExperienceSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const experiences = [
-  {
-    role: "Software Developer",
-    company: "Vaken Technologies, Trichy",
-    duration: "Oct 2025 - Current",
-    description: "Developing and maintaining scalable web applications using React and Node.js. Collaborating with cross-functional teams to deliver high-quality software solutions.",
-    responsibilities: [
-      "Lead development of new features and enhancements in React and Node.js",
-      "Collaborate with designers and backend engineers for seamless integration",
-      "Implement best practices for code quality, testing, and deployment",
-      "Optimize application performance and scalability",
-      "Mentor junior developers and conduct code reviews"
-    ]
-  },
-  {
-    role: "Trainee Engineer",
-    company: "Vaken Technologies, Trichy",
-    duration: "Oct 2024 - Oct 2025",
-    description: "Actively involved in the development and improvement of Sovablu, utilizing React to create dynamic, high-performance web applications.",
-    responsibilities: [
-      "Actively involved in the development and improvement of Sovablu, utilizing React",
-      "Proficient in applying responsive design in React for compatibility across devices",
-      "Skilled in using Jenkins for efficient CI/CD pipelines",
-      "Experienced with AWS CodeCommit for efficient version control and collaboration",
-      "Leveraged AWS CloudWatch to monitor logs and REST API performance"
-    ]
-  },
-  {
-    role: "Intern Trainee",
-    company: "Vaken Technologies, Trichy",
-    duration: "July 2024 - Sept 2024",
-    description: "Gained hands-on experience with Sovablu platform development and testing.",
-    responsibilities: [
-      "Acquired in-depth knowledge and practical experience with Sovablu platform",
-      "Assisted in testing and refining platform features for robust performance",
-      "Participated in team discussions and contributed to minor enhancements",
-      "Learned software development lifecycle processes and best practices"
-    ]
-  }
-];
+    {
+      role: "Software Developer",
+      company: "Vaken Technologies, Trichy",
+      duration: "Oct 2025 - Current",
+      description:
+        "Deliver production features end-to-end on the Sovablu enterprise platform, maintaining 99%+ uptime and zero post-deployment defects. Work across the full stack — Java/Spring Boot APIs and React.js UIs — in close collaboration with Japanese clients during Agile sprints.",
+      responsibilities: [
+        "Delivered 5+ production features end-to-end on the Sovablu enterprise platform with zero post-deployment defects and consistent 99%+ uptime.",
+        "Reduced application load times by 40% via performance profiling, efficient rendering patterns, and browser DevTools-driven debugging.",
+        "Built pixel-perfect, cross-browser responsive UIs using React.js and Redux, achieving 95%+ design fidelity across Chrome, Firefox, Safari, and Edge.",
+        "Designed RESTful APIs and refactored legacy Java code with Java 8 streams and lambdas, delivering a 20% backend performance improvement.",
+        "Built reusable React component libraries and custom hooks with Redux state management, cutting feature development effort across the team.",
+        "Collaborated directly with Japanese clients during Agile sprints to gather requirements and align technical deliverables with business goals.",
+      ],
+    },
+    {
+      role: "Trainee Engineer",
+      company: "Vaken Technologies, Trichy",
+      duration: "Oct 2024 - Oct 2025",
+      description:
+        "Actively involved in the development and improvement of Sovablu, utilising React to create dynamic, high-performance web applications.",
+      responsibilities: [
+        "Actively involved in the development and improvement of Sovablu, utilizing React",
+        "Proficient in applying responsive design in React for compatibility across devices",
+        "Skilled in using Jenkins for efficient CI/CD pipelines",
+        "Experienced with AWS CodeCommit for efficient version control and collaboration",
+        "Leveraged AWS CloudWatch to monitor logs and REST API performance",
+      ],
+    },
+    {
+      role: "Intern Trainee",
+      company: "Vaken Technologies, Trichy",
+      duration: "July 2024 - Sept 2024",
+      description:
+        "Gained hands-on experience with Sovablu platform development and testing.",
+      responsibilities: [
+        "Acquired in-depth knowledge and practical experience with Sovablu platform",
+        "Assisted in testing and refining platform features for robust performance",
+        "Participated in team discussions and contributed to minor enhancements",
+        "Learned software development lifecycle processes and best practices",
+      ],
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },

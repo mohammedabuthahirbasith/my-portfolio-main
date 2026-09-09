@@ -30,28 +30,28 @@ const AboutSection = () => {
     {
       title: "Who I Am",
       description:
-        "Software Developer from Erode, Tamil Nadu, with experience in React, Node.js, and modern web technologies. Currently working as a Software Developer at Vaken Technologies.",
+        "Full Stack Developer from Erode, Tamil Nadu, with 2+ years building production features on enterprise platforms for international clients. B.E. in Electronics & Communication Engineering from Nandha Engineering College (CGPA: 8.6).",
       icon: UserCircle,
       color: "from-blue-500 to-cyan-400"
     },
     {
       title: "What I Do",
       description:
-        "Develop and improve web applications using React, focusing on responsive design, scalability, and high performance. Experienced with CI/CD pipelines and cloud services.",
+        "Deliver end-to-end features on enterprise-grade platforms — building RESTful APIs with Java/Spring Boot on the backend and pixel-perfect, cross-browser UIs with React.js and Redux on the frontend. 5+ production features shipped with zero post-deployment defects.",
       icon: Code,
       color: "from-purple-500 to-pink-500"
     },
     {
       title: "My Approach",
       description:
-        "Focus on code quality, team collaboration, and continuous learning. Regularly participate in code reviews and contribute to platform improvements.",
+        "Treat performance, reliability, and design fidelity as engineering first principles — not afterthoughts. Reduce technical debt proactively, build reusable component libraries, and maintain 95%+ design fidelity across all major browsers.",
       icon: Lightbulb,
       color: "from-amber-500 to-orange-500"
     },
     {
       title: "My Process",
       description:
-        "Follow agile development practices, implement efficient CI/CD pipelines, and ensure robust application monitoring and performance.",
+        "Work in Agile sprints, collaborating directly with clients — including Japanese enterprise clients — to translate business goals into clean technical deliverables. Code reviews, CI/CD via Jenkins, and AWS CloudWatch monitoring are part of every cycle.",
       icon: Layers,
       color: "from-emerald-500 to-green-500"
     }
@@ -71,8 +71,7 @@ const AboutSection = () => {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Passionate developer with a keen eye for design and a commitment to creating
-            meaningful digital experiences.
+            A developer who owns the full stack — from Spring Boot APIs to React UIs — with a product ownership mindset and a passion for measurable outcomes.
           </p>
         </motion.div>
 
@@ -107,22 +106,22 @@ const AboutSection = () => {
             <div>
               <h3 className="text-2xl lg:text-3xl font-bold gradient-text mb-6">My Journey</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I am a Software Developer with a B.E. in Electronics and Communication Engineering from Nandha Engineering College. Currently working as a Software Developer at Vaken Technologies.
+                I started my engineering journey at Nandha Engineering College, graduating with a B.E. in Electronics & Communication Engineering. My path into software came through a deep curiosity for how things work under the hood — and a drive to build things that actually matter.
               </p>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I specialize in React development, building scalable and high-performance web applications. I have experience with modern development tools, CI/CD pipelines, and cloud platforms.
+                From my first days as an intern at Vaken Technologies, I was hands-on with the Sovablu enterprise platform. I grew fast — moving through the ranks from Intern Trainee to Trainee Engineer to Software Developer — each step sharpening my full stack skills across React, Spring Boot, and cloud infrastructure.
               </p>
               <p className="text-gray-300 leading-relaxed">
-                I am passionate about creating intuitive user interfaces and robust web applications. My portfolio includes projects built with modern technologies like React, Node.js, and Vue.js, demonstrating my commitment to staying current with industry trends.
+                Today, I deliver production features end-to-end with a product ownership mindset: 40% faster load times, 99%+ uptime, and direct collaboration with international clients during Agile sprints. I'm driven by clean architecture, measurable outcomes, and solving problems at scale.
               </p>
             </div>
             
             <div className="space-y-6">
               {[
-                { label: "Frontend Development", value: 85 },
-                { label: "Backend Development", value: 80 },
-                { label: "Database Management", value: 85 },
-                { label: "Software Development", value: 85 }
+                { label: "Frontend Development (React.js)", value: 88 },
+                { label: "Backend Development (Spring Boot)", value: 82 },
+                { label: "Database Management", value: 83 },
+                { label: "Cloud & DevOps (AWS, Docker)", value: 75 }
               ].map((skill) => (
                 <div key={skill.label}>
                   <div className="flex justify-between mb-2">

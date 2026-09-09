@@ -8,43 +8,44 @@ const SkillsSection = () => {
 
   const skillCategories = [
     {
-      title: "Programming Languages",
+      title: "Languages",
       icon: <Code className="text-purple-400" />,
       skills: [
-        { name: "C language", level: 85 },
-        { name: "Java", level: 85 },
-        { name: "Python", level: 80 },
-        { name: "HTML", level: 90 },
-        { name: "CSS", level: 85 },
+        { name: "Java", level: 88 },
+        { name: "JavaScript (ES6+)", level: 88 },
+        { name: "Python", level: 78 },
+        { name: "HTML5", level: 92 },
+        { name: "CSS3", level: 88 },
       ],
     },
     {
-      title: "Frameworks & Libraries",
+      title: "Frontend",
       icon: <Layout className="text-blue-400" />,
       skills: [
-        { name: "React", level: 80 },
-        { name: "React", level: 90 },
-{ name: "Vue JS", level: 80 },
-        { name: "Node JS", level: 80 },
-        { name: "JavaScript", level: 85 },
+        { name: "React.js", level: 90 },
+        { name: "Redux / Context API", level: 85 },
+        { name: "React Hooks", level: 87 },
+        { name: "Vue.js", level: 78 },
       ],
     },
     {
-      title: "Databases",
+      title: "Backend",
       icon: <Database className="text-green-400" />,
       skills: [
-        { name: "MySQL", level: 85 },
-        { name: "PostgreSQL", level: 80 },
+        { name: "Spring Boot", level: 85 },
+        { name: "RESTful APIs", level: 88 },
+        { name: "Java 8 (Streams & Lambdas)", level: 85 },
+        { name: "Hibernate / Spring Cloud", level: 80 },
       ],
     },
     {
-      title: "Tools",
+      title: "Databases & Cloud",
       icon: <Settings className="text-orange-400" />,
       skills: [
-        { name: "VS Code", level: 90 },
-        { name: "Eclipse", level: 85 },
+        { name: "PostgreSQL", level: 85 },
         { name: "MySQL", level: 85 },
-        { name: "pg Admin", level: 80 },
+        { name: "AWS (EC2, S3)", level: 75 },
+        { name: "Docker / Jenkins / Nginx", level: 75 },
       ],
     },
   ];
@@ -83,8 +84,8 @@ const SkillsSection = () => {
             My <span className="gradient-text">Skills</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            I'm constantly learning and improving my skills to stay current
-            with the latest technologies and best practices.
+            A rare combination of Java/Spring Boot backend depth and React frontend polish —
+            constantly sharpened through real enterprise shipping.
           </p>
         </motion.div>
 
@@ -147,10 +148,17 @@ const SkillsSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 text-center"
         >
-          <h3 className="text-2xl font-bold mb-8">Other Technologies I Work With</h3>
+          <h3 className="text-2xl font-bold mb-8">Full Tech Stack</h3>
           
           <div className="flex flex-wrap justify-center gap-4">
-            {["React", "Node.js", "Vue.js", "JavaScript", "Python", "Java", "C", "HTML", "CSS", "MySQL", "PostgreSQL", "VS Code", "Eclipse"].map((tech) => (
+            {[
+              "React.js", "Spring Boot", "Java", "JavaScript (ES6+)",
+              "Python", "Vue.js", "Redux", "React Hooks",
+              "Hibernate", "Spring Cloud", "RESTful APIs",
+              "PostgreSQL", "MySQL", "AWS EC2", "AWS S3",
+              "Docker", "Jenkins", "Nginx", "Git", "GitHub",
+              "HTML5", "CSS3"
+            ].map((tech) => (
               <motion.div
                 key={tech}
                 whileHover={{ scale: 1.1, y: -5 }}

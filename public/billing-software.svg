@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#0f0f1a"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="130" height="400" fill="#16213e"/>
+
+  <!-- Logo -->
+  <rect x="15" y="18" width="100" height="34" rx="8" fill="#7c3aed"/>
+  <text x="65" y="40" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">BillSoft</text>
+
+  <!-- Sidebar nav items -->
+  <rect x="12" y="68" width="106" height="30" rx="7" fill="#7c3aed" opacity="0.95"/>
+  <text x="65" y="88" font-family="Arial,sans-serif" font-size="11" fill="white" text-anchor="middle">📊 Dashboard</text>
+  <rect x="12" y="106" width="106" height="30" rx="7" fill="none"/>
+  <text x="65" y="126" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">🧾 Invoices</text>
+  <rect x="12" y="144" width="106" height="30" rx="7" fill="none"/>
+  <text x="65" y="164" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">👥 Clients</text>
+  <rect x="12" y="182" width="106" height="30" rx="7" fill="none"/>
+  <text x="65" y="202" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">📈 Reports</text>
+  <rect x="12" y="220" width="106" height="30" rx="7" fill="none"/>
+  <text x="65" y="240" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">⚙️ Settings</text>
+
+  <!-- User avatar at bottom of sidebar -->
+  <circle cx="65" cy="360" r="22" fill="#7c3aed" opacity="0.4"/>
+  <text x="65" y="366" font-family="Arial,sans-serif" font-size="16" fill="#a78bfa" text-anchor="middle">MA</text>
+
+  <!-- MAIN CONTENT AREA -->
+
+  <!-- Top bar -->
+  <rect x="140" y="14" width="448" height="46" rx="8" fill="#16213e"/>
+  <text x="160" y="44" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="white">Invoice Dashboard</text>
+
+  <!-- New Invoice button -->
+  <rect x="516" y="22" width="62" height="30" rx="15" fill="#7c3aed"/>
+  <text x="547" y="41" font-family="Arial,sans-serif" font-size="11" fill="white" text-anchor="middle">+ New</text>
+
+  <!-- Stat cards -->
+  <!-- Card 1: Revenue -->
+  <rect x="140" y="72" width="104" height="72" rx="9" fill="#16213e"/>
+  <text x="192" y="95" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">Total Revenue</text>
+  <text x="192" y="120" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#a78bfa" text-anchor="middle">₹48,200</text>
+
+  <!-- Card 2: Paid -->
+  <rect x="252" y="72" width="104" height="72" rx="9" fill="#16213e"/>
+  <text x="304" y="95" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">Invoices Paid</text>
+  <text x="304" y="120" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#34d399" text-anchor="middle">32</text>
+
+  <!-- Card 3: Pending -->
+  <rect x="364" y="72" width="104" height="72" rx="9" fill="#16213e"/>
+  <text x="416" y="95" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">Pending</text>
+  <text x="416" y="120" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#fbbf24" text-anchor="middle">8</text>
+
+  <!-- Card 4: Overdue -->
+  <rect x="476" y="72" width="112" height="72" rx="9" fill="#16213e"/>
+  <text x="532" y="95" font-family="Arial,sans-serif" font-size="9" fill="#9ca3af" text-anchor="middle">Overdue</text>
+  <text x="532" y="120" font-family="Arial,sans-serif" font-size="17" font-weight="bold" fill="#f87171" text-anchor="middle">3</text>
+
+  <!-- Invoices Table -->
+  <rect x="140" y="156" width="448" height="228" rx="9" fill="#16213e"/>
+
+  <!-- Table header row -->
+  <rect x="140" y="156" width="448" height="34" rx="9" fill="#1d1d3a"/>
+  <rect x="140" y="175" width="448" height="15" fill="#1d1d3a"/>
+  <text x="160" y="178" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">#</text>
+  <text x="195" y="178" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">Client</text>
+  <text x="330" y="178" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">Amount</text>
+  <text x="420" y="178" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">Date</text>
+  <text x="516" y="178" font-family="Arial,sans-serif" font-size="10" fill="#6b7280">Status</text>
+
+  <!-- Divider -->
+  <line x1="140" y1="190" x2="588" y2="190" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <text x="160" y="212" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">#001</text>
+  <text x="195" y="212" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">Acme Corp</text>
+  <text x="330" y="212" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">₹12,500</text>
+  <text x="420" y="212" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">Jun 2025</text>
+  <rect x="504" y="200" width="56" height="17" rx="8" fill="#34d399" opacity="0.18"/>
+  <text x="532" y="213" font-family="Arial,sans-serif" font-size="10" fill="#34d399" text-anchor="middle">Paid</text>
+  <line x1="140" y1="224" x2="588" y2="224" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <text x="160" y="246" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">#002</text>
+  <text x="195" y="246" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">Nexus Ltd</text>
+  <text x="330" y="246" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">₹8,750</text>
+  <text x="420" y="246" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">May 2025</text>
+  <rect x="504" y="234" width="56" height="17" rx="8" fill="#fbbf24" opacity="0.18"/>
+  <text x="532" y="247" font-family="Arial,sans-serif" font-size="10" fill="#fbbf24" text-anchor="middle">Pending</text>
+  <line x1="140" y1="258" x2="588" y2="258" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Row 3 -->
+  <text x="160" y="280" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">#003</text>
+  <text x="195" y="280" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">Pixel Works</text>
+  <text x="330" y="280" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">₹15,000</text>
+  <text x="420" y="280" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">Apr 2025</text>
+  <rect x="504" y="268" width="56" height="17" rx="8" fill="#34d399" opacity="0.18"/>
+  <text x="532" y="281" font-family="Arial,sans-serif" font-size="10" fill="#34d399" text-anchor="middle">Paid</text>
+  <line x1="140" y1="292" x2="588" y2="292" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Row 4 -->
+  <text x="160" y="314" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">#004</text>
+  <text x="195" y="314" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">CloudBase</text>
+  <text x="330" y="314" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">₹6,200</text>
+  <text x="420" y="314" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">Mar 2025</text>
+  <rect x="504" y="302" width="56" height="17" rx="8" fill="#f87171" opacity="0.18"/>
+  <text x="532" y="315" font-family="Arial,sans-serif" font-size="10" fill="#f87171" text-anchor="middle">Overdue</text>
+  <line x1="140" y1="326" x2="588" y2="326" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Row 5 -->
+  <text x="160" y="348" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">#005</text>
+  <text x="195" y="348" font-family="Arial,sans-serif" font-size="11" fill="#e5e7eb">TechVision</text>
+  <text x="330" y="348" font-family="Arial,sans-serif" font-size="11" fill="#a78bfa">₹5,750</text>
+  <text x="420" y="348" font-family="Arial,sans-serif" font-size="11" fill="#9ca3af">Feb 2025</text>
+  <rect x="504" y="336" width="56" height="17" rx="8" fill="#34d399" opacity="0.18"/>
+  <text x="532" y="349" font-family="Arial,sans-serif" font-size="10" fill="#34d399" text-anchor="middle">Paid</text>
+
+  <!-- Purple gradient accent line at top -->
+  <rect x="0" y="0" width="600" height="3" fill="url(#topGradient)"/>
+  <defs>
+    <linearGradient id="topGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+</svg>

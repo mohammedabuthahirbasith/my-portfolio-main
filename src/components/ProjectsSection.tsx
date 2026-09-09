@@ -8,37 +8,40 @@ const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
-  {
-    id: 1,
-    title: "Billing Software",
-    description: "Comprehensive billing and invoicing solution for businesses.",
-    longDescription: "A robust billing software designed to streamline invoicing, manage client accounts, and generate detailed financial reports. Built with React and Node.js for seamless performance and scalability.",
-    tech: ["React", "Node.js", "Express", "MySQL"],
-    image: "/placeholder.svg", // Replace with a custom image if available
-    github: "https://github.com/mohammedabuthahirbasith/billing-software",
-    liveLink: "#",
-  },
-  {
-    id: 2,
-    title: "Code Pen",
-    description: "Online compiler for HTML, CSS, and JavaScript.",
-    longDescription: "Built a CodePen-like online compiler using React, allowing real-time rendering of HTML, CSS, and JavaScript. Designed for seamless code editing and previewing, fostering a collaborative learning experience.",
-    tech: ["React", "HTML", "CSS", "JavaScript"],
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-    github: "https://github.com/mohammedabuthahir29/code-pen",
-    liveLink: "https://codepen-clone-demo.example.com",
-  },
-  {
-    id: 3,
-    title: "Portfolio Website",
-    description: "Modern portfolio with interactive 3D elements and animations.",
-    longDescription: "A modern portfolio website built with React, Three.js, and Framer Motion. Features include interactive 3D elements, smooth animations, and a responsive design that works seamlessly across all devices.",
-    tech: ["React", "Three.js", "Framer Motion", "TailwindCSS", "TypeScript"],
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop",
-    github: "https://github.com/mohammedabuthahirbasith/my-portfolio-main",
-    liveLink: "https://basith-portfolio-main.netlify.app/",
-  },
-];
+    {
+      id: 1,
+      title: "Full-Stack Billing Application",
+      description: "Production-grade invoicing system with role-based auth and RESTful APIs.",
+      longDescription:
+        "A production-grade invoicing and billing platform featuring role-based authentication, RESTful API integration with Spring Boot, and comprehensive invoice management. The frontend is deployed on Vercel, the backend on Render, and the database is powered by Neon (serverless PostgreSQL). Built for real-world use with scalability and clean architecture at its core.",
+      tech: ["React", "Spring Boot", "PostgreSQL", "Vercel", "Render", "Neon DB"],
+      image: "/billing-software.svg",
+      github: "https://github.com/mohammedabuthahirbasith/billing-software",
+      liveLink: "#",
+    },
+    {
+      id: 2,
+      title: "CodePen Clone",
+      description: "Real-time collaborative code editor with live preview in the browser.",
+      longDescription:
+        "A fully functional CodePen-inspired code editor built with React. Supports real-time HTML, CSS, and JavaScript editing with instant live preview rendering. Implemented code splitting for optimised bundle performance and a scalable, reusable component architecture. Designed to mirror the collaborative experience of the original platform.",
+      tech: ["React", "HTML5", "CSS3", "JavaScript"],
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
+      github: "https://github.com/mohammedabuthahir29/code-pen",
+      liveLink: "#",
+    },
+    {
+      id: 3,
+      title: "Portfolio Website",
+      description: "Modern developer portfolio with interactive 3D elements and animations.",
+      longDescription:
+        "This portfolio itself — built from scratch with React, Three.js for the 3D animated cube, and Framer Motion for smooth page transitions and scroll-triggered animations. Written in TypeScript with TailwindCSS for styling. Fully responsive across all devices and browsers, deployed on Netlify with continuous deployment from GitHub.",
+      tech: ["React", "Three.js", "Framer Motion", "TailwindCSS", "TypeScript"],
+      image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop",
+      github: "https://github.com/mohammedabuthahirbasith/my-portfolio-main",
+      liveLink: "https://basith-portfolio-main.netlify.app/",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,8 +77,8 @@ const ProjectsSection = () => {
             My <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
-            Here are some of my recent projects that showcase my skills and passion
-            for creating exceptional digital experiences.
+            A selection of projects I've built — from production-grade enterprise tools to
+            developer utilities, all reflecting my commitment to clean code and real-world impact.
           </p>
         </motion.div>
 
@@ -203,7 +206,7 @@ const ProjectsSection = () => {
                       <span>GitHub</span>
                     </a>
                     
-                    {selectedProject.liveLink && (
+                    {selectedProject.liveLink && selectedProject.liveLink !== "#" && (
                       <a 
                         href={selectedProject.liveLink}
                         target="_blank"

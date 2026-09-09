@@ -13,8 +13,8 @@ const textVariants = {
 };
 
 const HeroSection = () => {
-  const [text, setText] = useState("Software Developer");
-  const fullText = "Software Developer";
+  const [text, setText] = useState("Full Stack Developer");
+  const fullText = "Full Stack Developer";
   const index = useRef(0);
   
   useEffect(() => {
@@ -91,7 +91,7 @@ const HeroSection = () => {
             variants={itemVariants}
             className="text-base sm:text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
           >
-            Software Developer with experience in React, Node.js, and modern web technologies. Passionate about building scalable, high-performance applications and driving team success.
+            Full Stack Developer with 2+ years delivering production features for international clients — combining Java/Spring Boot backend depth with React frontend polish to build high-performance enterprise applications.
           </motion.p>
 
           <motion.div
@@ -108,8 +108,8 @@ const HeroSection = () => {
             </motion.button>
             
             <motion.a
-              href="/Mohammed Abuthahir Basith Fullstack_Developer_Resume.pdf"
-              download="Mohammed Abuthahir Basith Fullstack_Developer_Resume.pdf"
+              href="/Mohammed_Abuthahir_Basith_Fullstack_Developer_Resume.pdf"
+              download="Mohammed_Abuthahir_Basith_Fullstack_Developer_Resume.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-3 sm:px-8 sm:py-4 glass-effect rounded-full text-white font-medium hover:bg-white/10 flex items-center justify-center gap-2 transition-all duration-300"
