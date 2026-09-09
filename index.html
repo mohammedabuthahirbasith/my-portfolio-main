@@ -10,11 +10,17 @@
     <meta property="og:title" content="Mohammed Abuthahir Basith A - Full Stack Developer Portfolio" />
     <meta property="og:description" content="Full Stack Developer specializing in React.js, Spring Boot, and Java — building high-performance enterprise applications." />
     <meta property="og:type" content="website" />
-  
-    
   </head>
 
   <body>
+    <!-- Hidden form for Netlify Forms detection during build -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>

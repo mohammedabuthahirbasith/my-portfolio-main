@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useRef, useState } from "react";
 
-// Add LeetCode icon component
 const LeetCode = ({ size = 24, className = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -27,26 +26,30 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message"),
-    };
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     try {
-      // Here you would typically send the data to your backend
-      console.log("Form data:", data);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+      // Netlify Forms submission — free, no API key, built into Netlify hosting
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
       });
-      e.currentTarget.reset();
+
+      if (response.ok) {
+        toast({
+          title: "Message sent! 🎉",
+          description: "Thanks for reaching out — I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Form submission failed");
+      }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "There was an error sending your message. Please try again.",
+        title: "Error sending message",
+        description: "Something went wrong. Please email me directly at mohammedabuthahir29@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -79,7 +82,7 @@ const ContactSection = () => {
     {
       name: "Github",
       icon: Github,
-      url: "https://github.com/mohammedabuthahir29",
+      url: "https://github.com/mohammedabuthahirbasith",
     },
     {
       name: "LinkedIn",
@@ -112,7 +115,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {/* Contact Form */}
+          {/* Contact Form — submits via Netlify Forms */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -122,7 +125,17 @@ const ContactSection = () => {
             <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
               Send Me a Message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form
+              onSubmit={handleSubmit}
+              name="contact"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              className="space-y-4 md:space-y-6"
+            >
+              {/* Required hidden fields for Netlify */}
+              <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
+
               <div>
                 <label htmlFor="name" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Your Name
@@ -136,6 +149,7 @@ const ContactSection = () => {
                   placeholder="John Doe"
                 />
               </div>
+
               <div>
                 <label htmlFor="email" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Your Email
@@ -149,6 +163,7 @@ const ContactSection = () => {
                   placeholder="john@example.com"
                 />
               </div>
+
               <div>
                 <label htmlFor="subject" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Subject
@@ -162,6 +177,7 @@ const ContactSection = () => {
                   placeholder="Project Inquiry"
                 />
               </div>
+
               <div>
                 <label htmlFor="message" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Your Message
@@ -175,6 +191,7 @@ const ContactSection = () => {
                   placeholder="I'd like to discuss a project..."
                 />
               </div>
+
               <button
                 type="submit"
                 disabled={isSubmitting}

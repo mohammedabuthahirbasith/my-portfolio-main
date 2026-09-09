@@ -27,7 +27,7 @@ const ProjectsSection = () => {
         "A fully functional CodePen-inspired code editor built with React. Supports real-time HTML, CSS, and JavaScript editing with instant live preview rendering. Implemented code splitting for optimised bundle performance and a scalable, reusable component architecture. Designed to mirror the collaborative experience of the original platform.",
       tech: ["React", "HTML5", "CSS3", "JavaScript"],
       image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&h=400&fit=crop",
-      github: "https://github.com/mohammedabuthahir29/code-pen",
+      github: "https://github.com/mohammedabuthahirbasith/codepen-react",
       liveLink: "#",
     },
     {
