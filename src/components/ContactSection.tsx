@@ -1,10 +1,9 @@
-import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
 import { motion, useInView } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useRef, useState } from "react";
 
-const LeetCode = ({ size = 24, className = "" }) => (
+const LeetCode = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -17,37 +16,71 @@ const LeetCode = ({ size = 24, className = "" }) => (
   </svg>
 );
 
+const OWNER_EMAIL = "mohammedabuthahir29@gmail.com";
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${OWNER_EMAIL}`;
+
+interface FormState {
+  from_name: string;
+  reply_to: string;
+  subject: string;
+  message: string;
+}
+
 const ContactSection = () => {
   const ref = useRef(null);
-  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState<FormState>({
+    from_name: "",
+    reply_to: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formRef.current) return;
     setIsSubmitting(true);
 
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
-      );
-
-      toast({
-        title: "Message sent! 🎉",
-        description: "Thanks for reaching out — I'll get back to you soon.",
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.from_name,
+          email: form.reply_to,
+          _subject: `Portfolio Contact: ${form.subject}`,
+          message: form.message,
+          // FormSubmit extras — disable captcha, disable auto-reply CC
+          _captcha: "false",
+          _template: "table",
+        }),
       });
-      formRef.current.reset();
-    } catch (error) {
-      console.error("EmailJS error:", error);
+
+      const data = await res.json();
+
+      if (data.success === "true" || data.success === true) {
+        toast({
+          title: "Message sent! 🎉",
+          description: "Thanks for reaching out — I'll get back to you soon.",
+        });
+        setForm({ from_name: "", reply_to: "", subject: "", message: "" });
+      } else {
+        throw new Error("Submission rejected");
+      }
+    } catch {
       toast({
-        title: "Error sending message",
-        description:
-          "Something went wrong. Please email me at mohammedabuthahir29@gmail.com",
+        title: "Failed to send",
+        description: `Please email me directly at ${OWNER_EMAIL}`,
         variant: "destructive",
       });
     } finally {
@@ -59,8 +92,8 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "mohammedabuthahir29@gmail.com",
-      href: "mailto:mohammedabuthahir29@gmail.com",
+      value: OWNER_EMAIL,
+      href: `mailto:${OWNER_EMAIL}`,
     },
     {
       icon: Phone,
@@ -72,7 +105,7 @@ const ContactSection = () => {
       icon: MapPin,
       label: "Location",
       value: "Erode, Tamil Nadu",
-      href: "https://maps.google.com/?q=Erode,Tamil Nadu",
+      href: "https://maps.google.com/?q=Erode,Tamil+Nadu",
     },
   ];
 
@@ -113,7 +146,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {/* Contact Form */}
+          {/* ── Contact Form ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -124,51 +157,73 @@ const ContactSection = () => {
               Send Me a Message
             </h3>
 
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+              {/* Name */}
               <div>
-                <label htmlFor="from_name" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label
+                  htmlFor="from_name"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Your Name
                 </label>
                 <input
-                  type="text"
                   id="from_name"
                   name="from_name"
+                  type="text"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
+                  value={form.from_name}
+                  onChange={handleChange}
                   placeholder="John Doe"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                 />
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="reply_to" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label
+                  htmlFor="reply_to"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Your Email
                 </label>
                 <input
-                  type="email"
                   id="reply_to"
                   name="reply_to"
+                  type="email"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
+                  value={form.reply_to}
+                  onChange={handleChange}
                   placeholder="john@example.com"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                 />
               </div>
 
+              {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Subject
                 </label>
                 <input
-                  type="text"
                   id="subject"
                   name="subject"
+                  type="text"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
+                  value={form.subject}
+                  onChange={handleChange}
                   placeholder="Project Inquiry"
+                  className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                 />
               </div>
 
+              {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-300 mb-1"
+                >
                   Your Message
                 </label>
                 <textarea
@@ -176,24 +231,41 @@ const ContactSection = () => {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none text-base"
+                  value={form.message}
+                  onChange={handleChange}
                   placeholder="I'd like to discuss a project..."
+                  className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none text-base"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-base"
+                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-base"
               >
                 {isSubmitting ? (
-                  <span className="flex items-center gap-2">
-                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                  <>
+                    <svg
+                      className="animate-spin h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      />
                     </svg>
-                    Sending...
-                  </span>
+                    Sending…
+                  </>
                 ) : (
                   <>
                     <Send size={18} />
@@ -204,6 +276,7 @@ const ContactSection = () => {
             </form>
           </motion.div>
 
+          {/* ── Right column ── */}
           <div className="space-y-6">
             {/* Contact Info */}
             <motion.div
@@ -228,8 +301,10 @@ const ContactSection = () => {
                       <info.icon size={20} className="text-purple-400" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-gray-400 text-sm md:text-base">{info.label}</h4>
-                      <p className="text-white font-medium mt-0.5 text-sm md:text-base truncate">{info.value}</p>
+                      <h4 className="text-gray-400 text-sm">{info.label}</h4>
+                      <p className="text-white font-medium mt-0.5 text-sm md:text-base truncate">
+                        {info.value}
+                      </p>
                     </div>
                   </a>
                 ))}
@@ -251,10 +326,12 @@ const ContactSection = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-[#0B1121] rounded-xl px-5 py-4 hover:bg-gray-800/80 transition-all duration-300 flex items-center gap-3 min-w-[140px]"
+                    className="bg-[#0B1121] rounded-xl px-5 py-4 hover:bg-gray-800/80 transition-all duration-300 flex items-center gap-3"
                   >
                     <social.icon className="text-white w-6 h-6 shrink-0" />
-                    <span className="text-white text-lg whitespace-nowrap">{social.name}</span>
+                    <span className="text-white text-lg whitespace-nowrap">
+                      {social.name}
+                    </span>
                   </a>
                 ))}
               </div>
