@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
 import { motion, useInView } from "framer-motion";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
@@ -18,38 +19,35 @@ const LeetCode = ({ size = 24, className = "" }) => (
 
 const ContactSection = () => {
   const ref = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formRef.current) return;
     setIsSubmitting(true);
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
     try {
-      // Netlify Forms submission — free, no API key, built into Netlify hosting
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      });
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      );
 
-      if (response.ok) {
-        toast({
-          title: "Message sent! 🎉",
-          description: "Thanks for reaching out — I'll get back to you soon.",
-        });
-        form.reset();
-      } else {
-        throw new Error("Form submission failed");
-      }
+      toast({
+        title: "Message sent! 🎉",
+        description: "Thanks for reaching out — I'll get back to you soon.",
+      });
+      formRef.current.reset();
     } catch (error) {
+      console.error("EmailJS error:", error);
       toast({
         title: "Error sending message",
-        description: "Something went wrong. Please email me directly at mohammedabuthahir29@gmail.com",
+        description:
+          "Something went wrong. Please email me at mohammedabuthahir29@gmail.com",
         variant: "destructive",
       });
     } finally {
@@ -115,7 +113,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {/* Contact Form — submits via Netlify Forms */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -125,41 +123,32 @@ const ContactSection = () => {
             <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
               Send Me a Message
             </h3>
-            <form
-              onSubmit={handleSubmit}
-              name="contact"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              className="space-y-4 md:space-y-6"
-            >
-              {/* Required hidden fields for Netlify */}
-              <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" />
 
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="from_name" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Your Name
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="from_name"
+                  name="from_name"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 lg:py-4 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base md:text-lg"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                   placeholder="John Doe"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
+                <label htmlFor="reply_to" className="block text-sm md:text-base font-medium text-gray-300 mb-1 md:mb-2">
                   Your Email
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  id="reply_to"
+                  name="reply_to"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 lg:py-4 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base md:text-lg"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                   placeholder="john@example.com"
                 />
               </div>
@@ -173,7 +162,7 @@ const ContactSection = () => {
                   id="subject"
                   name="subject"
                   required
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 lg:py-4 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base md:text-lg"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors text-base"
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -187,7 +176,7 @@ const ContactSection = () => {
                   name="message"
                   required
                   rows={5}
-                  className="w-full px-3 md:px-4 py-2.5 md:py-3 lg:py-4 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none text-base md:text-lg"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none text-base"
                   placeholder="I'd like to discuss a project..."
                 />
               </div>
@@ -195,13 +184,19 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-6 md:px-8 py-2.5 md:py-3 lg:py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-base md:text-lg"
+                className="w-full md:w-auto px-6 md:px-8 py-2.5 md:py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-50 text-base"
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  <span className="flex items-center gap-2">
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                    </svg>
+                    Sending...
+                  </span>
                 ) : (
                   <>
-                    <Send size={20} />
+                    <Send size={18} />
                     Send Message
                   </>
                 )}
@@ -209,48 +204,46 @@ const ContactSection = () => {
             </form>
           </motion.div>
 
-          <div className="space-y-6 md:space-y-8">
-            {/* Contact Information */}
+          <div className="space-y-6">
+            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 w-full"
             >
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 md:mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
                 Contact Information
               </h3>
-              <div className="space-y-3 md:space-y-4 lg:space-y-6">
+              <div className="space-y-3 md:space-y-4">
                 {contactInfo.map((info) => (
                   <a
                     key={info.label}
                     href={info.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 md:gap-4 lg:gap-6 p-3 md:p-4 lg:p-5 rounded-lg hover:bg-gray-800/50 transition-colors group"
+                    className="flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-lg hover:bg-gray-800/50 transition-colors group"
                   >
-                    <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-                      <info.icon size={20} className="text-purple-400 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                    <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-purple-500/10 flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
+                      <info.icon size={20} className="text-purple-400" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-gray-400 text-sm md:text-base lg:text-lg">{info.label}</h4>
-                      <p className="text-white font-medium mt-0.5 text-sm md:text-base lg:text-lg truncate">{info.value}</p>
+                      <h4 className="text-gray-400 text-sm md:text-base">{info.label}</h4>
+                      <p className="text-white font-medium mt-0.5 text-sm md:text-base truncate">{info.value}</p>
                     </div>
                   </a>
                 ))}
               </div>
             </motion.div>
 
-            {/* Follow Me */}
+            {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
               className="glass-effect rounded-2xl p-6 lg:p-8 w-full"
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                Follow Me
-              </h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Follow Me</h3>
               <div className="flex flex-col sm:flex-row gap-4">
                 {socialLinks.map((social) => (
                   <a
@@ -261,9 +254,7 @@ const ContactSection = () => {
                     className="bg-[#0B1121] rounded-xl px-5 py-4 hover:bg-gray-800/80 transition-all duration-300 flex items-center gap-3 min-w-[140px]"
                   >
                     <social.icon className="text-white w-6 h-6 shrink-0" />
-                    <span className="text-white text-lg whitespace-nowrap pr-2">
-                      {social.name}
-                    </span>
+                    <span className="text-white text-lg whitespace-nowrap">{social.name}</span>
                   </a>
                 ))}
               </div>
